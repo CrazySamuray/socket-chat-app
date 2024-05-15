@@ -2,7 +2,7 @@
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
-const LoginBox = styled(Box)(({ theme }) => ({
+const FormBox = styled(Box)(({ theme }) => ({
   backgroundColor: "#fff", // Replace with your desired box color
   padding: theme.spacing(4),
   borderRadius: theme.shape.borderRadius,
@@ -10,6 +10,7 @@ const LoginBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  maxWidth: 500,
 }));
 
-export default LoginBox;
+export default FormBox;
