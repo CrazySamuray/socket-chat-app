@@ -32,6 +32,7 @@ const SearchInput = () => {
         backgroundColor: "#081419",
         borderBottom: "1px solid #1c2b2e",
         color: "#edf3ee",
+        height: "60px",
       }}
       component="form"
       onSubmit={handleSubmit}
@@ -44,7 +45,7 @@ const SearchInput = () => {
         onChange={(e) => setSearch(e.target.value)}
         fullWidth
         inputProps={{
-          style: { color: "#edf3ee" },
+          style: { color: "#edf3ee", padding: 5, alignContent: "center" },
           placeholderTextColor: "#edf3ee",
         }}
       />
