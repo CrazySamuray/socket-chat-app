@@ -1,53 +1,94 @@
-// src/components/Login.jsx
 import React from "react";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import FormBox from "../components/styledComponents/FormBox";
-
-const handleSignUpClick = () => {
-  // Handle sign-up redirection logic here
-  console.log("Redirect to sign-up page");
-};
-
-const handleLogin = (event) => {
-  event.preventDefault();
-  // Handle sign-up logic here
-  console.log("Username:", username);
-  console.log("Password:", password);
-  console.log("Email:", email);
-};
+import { Link } from "react-router-dom";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 function Login() {
+  const initialValues = {
+    username: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().required("Username is required"),
+    password: Yup.string().required("Password is required"),
+  });
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log("Form values:", values);
+    // You can add your login logic here
+    setSubmitting(false);
+  };
+
   return (
     <FormBox>
       <Typography variant="h5" component="h1" gutterBottom>
         Login
       </Typography>
-      <form onSubmit={handleLogin}>
-        <TextField
-          label="Username"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Password"
-          type="password"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-        />
-        <Button variant="contained" color="primary" fullWidth>
-          Login
-        </Button>
-      </form>
-      <Box mt={2}>
-        <Typography variant="body2">
-          Dont have an account?{" "}
-          <Button color="secondary" onClick={handleSignUpClick}>
-            Sign Up
-          </Button>
-        </Typography>
-      </Box>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          touched,
+          errors,
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Username"
+              variant="outlined"
+              name="username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.username && Boolean(errors.username)}
+              helperText={touched.username && errors.username}
+            />
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Password"
+              variant="outlined"
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.password && Boolean(errors.password)}
+              helperText={touched.password && errors.password}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Logging in..." : "Login"}
+            </Button>
+            <Box mt={2}>
+              <Typography>
+                <Link
+                  to="/signup"
+                  style={{ textDecoration: "none", color: "#2196f3" }}
+                >
+                  Don't have an account? Sign Up
+                </Link>
+              </Typography>
+            </Box>
+          </Form>
+        )}
+      </Formik>
     </FormBox>
   );
 }
