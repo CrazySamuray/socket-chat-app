@@ -21,7 +21,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           maxHeight: 70,
-          backgroundColor: "#0c1b22",
           alignItems: "center",
         },
       },

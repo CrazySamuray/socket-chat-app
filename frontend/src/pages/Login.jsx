@@ -2,10 +2,13 @@ import React from "react";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import FormBox from "../components/styledComponents/FormBox";
 import { Link } from "react-router-dom";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useLogin } from "../hooks/useLogin";
 
 function Login() {
+  const { loading, login } = useLogin();
+
   const initialValues = {
     username: "",
     password: "",
@@ -18,7 +21,7 @@ function Login() {
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log("Form values:", values);
-    // You can add your login logic here
+    login(values.username, values.password);
     setSubmitting(false);
   };
 

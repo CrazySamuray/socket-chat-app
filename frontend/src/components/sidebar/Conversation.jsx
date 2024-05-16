@@ -7,11 +7,30 @@ import {
   Typography,
   Box,
 } from "@mui/material";
+import useConversation from "../../zustand/useConversation";
 
-const Conversation = () => {
+const Conversation = ({ conversation }) => {
+  const setSelectedConversation = useConversation(
+    (state) => state.setSelectedConversation
+  );
+  const selectedConversation = useConversation(
+    (state) => state.selectedConversation
+  );
+
+  const isSelected = selectedConversation?._id === conversation._id;
+
   return (
     <>
-      <Card>
+      <Card
+        sx={{
+          backgroundColor: isSelected ? "#4e7cff" : "#0c1b22",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: isSelected ? "#82bfff" : "#89b0cd", // Light blue when hovered
+          },
+        }}
+        onClick={() => setSelectedConversation(conversation)}
+      >
         <CardContent style={{ flex: 1, alignItems: "center" }}>
           <Box
             sx={{
@@ -22,7 +41,7 @@ const Conversation = () => {
           >
             <Avatar>
               <img
-                src="https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png"
+                src={conversation.profilePic}
                 alt="user avatar"
                 style={{ width: 45, height: 45, borderRadius: "50%" }}
               />
@@ -33,10 +52,7 @@ const Conversation = () => {
               fontWeight="bold"
               color="#edf3ee"
             >
-              John Doe
-            </Typography>
-            <Typography style={{ marginLeft: 90 }} variant="h4">
-              🎃
+              {conversation.fullName}
             </Typography>
           </Box>
         </CardContent>
