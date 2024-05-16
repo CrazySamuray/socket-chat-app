@@ -6,6 +6,11 @@ const MessageInput = () => {
   return (
     <form style={{ padding: "0 16px", marginBottom: "10px" }}>
       <TextField
+        sx={{
+          backgroundColor: "#081419",
+          input: { color: "#ffffff" },
+          placeholder: { color: "#ffffff" },
+        }}
         fullWidth
         size="small"
         placeholder="Send a message"

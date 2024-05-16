@@ -5,6 +5,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import GenderCheckbox from "./GenderCheckBox";
 import FormBox from "../../components/styledComponents/FormBox";
+import useSignup from "../../hooks/useSignup";
 
 function SignUp() {
   const initialValues = {
@@ -14,6 +15,8 @@ function SignUp() {
     confirmPassword: "",
     gender: "",
   };
+
+  const { loading, signup } = useSignup();
 
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required("Full Name is required"),
@@ -28,7 +31,7 @@ function SignUp() {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log("Form values:", values);
+    signup(values);
     setSubmitting(false);
   };
 
@@ -47,7 +50,7 @@ function SignUp() {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting,
+          isDirty,
           touched,
           errors,
         }) => (
@@ -128,9 +131,9 @@ function SignUp() {
               variant="contained"
               color="primary"
               fullWidth
-              disabled={isSubmitting}
+              disabled={isDirty}
             >
-              {isSubmitting ? "Signing Up..." : "Sign Up"}
+              {loading ? "Signing Up..." : "Sign Up"}
             </Button>
           </Form>
         )}
