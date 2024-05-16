@@ -1,16 +1,16 @@
 import { Grid } from "@mui/material";
-// import MessageContainer from "../../components/messages/MessageContainer";
+import MessageContainer from "../components/messages/MessageContainer";
 import Sidebar from "../components/sidebar/Sidebar";
 
 const Home = () => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} sm={4}>
+    <Grid container>
+      <Grid item>
         <Sidebar />
       </Grid>
-      {/* <Grid item xs={12} sm={8}>
+      <Grid item sm={6}>
         <MessageContainer />
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 };

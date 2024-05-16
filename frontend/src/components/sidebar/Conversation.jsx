@@ -11,12 +11,13 @@ import {
 const Conversation = () => {
   return (
     <>
-      <Card sx={{ maxHeight: 70, backgroundColor: "#0c1b22" }}>
-        <CardContent style={{ flex: 1 }}>
+      <Card>
+        <CardContent style={{ flex: 1, alignItems: "center" }}>
           <Box
-            style={{
+            sx={{
               display: "flex",
               alignItems: "center",
+              padding: "10px",
             }}
           >
             <Avatar>

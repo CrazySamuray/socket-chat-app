@@ -28,12 +28,6 @@ const SearchInput = () => {
 
   return (
     <Paper
-      style={{
-        backgroundColor: "#081419",
-        borderBottom: "1px solid #1c2b2e",
-        color: "#edf3ee",
-        height: "60px",
-      }}
       component="form"
       onSubmit={handleSubmit}
       elevation={0}
