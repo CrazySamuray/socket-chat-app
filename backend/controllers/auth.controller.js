@@ -22,7 +22,7 @@ export const signup = async (req, res) => {
 
 		// https://avatar-placeholder.iran.liara.run/
 
-		const ProfilePic = `https://ui-avatars.com/api/?name=${fullName}`;
+		const ProfilePic = `https://ui-avatars.com/api/?name=${fullName}&background=0D8ABC&color=fff`;
 
 		const newUser = new User({
 			fullName,
