@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 
 const MessagesWrapper = () => {
   const { messages, loading } = useGetMessages();
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (!loading && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, loading]);
 
   return (
     <Box
@@ -49,6 +56,7 @@ const MessagesWrapper = () => {
           Send a message to start the conversation
         </Typography>
       )}
+      <div ref={messagesEndRef} />
     </Box>
   );
 };
