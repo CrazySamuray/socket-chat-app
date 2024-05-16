@@ -17,6 +17,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.5",
+    "socket.io": "^4.7.5",
     "soket.io": "^0.0.1-security"
   },
   "devDependencies": {
