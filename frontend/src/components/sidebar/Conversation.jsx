@@ -10,12 +10,7 @@ import {
 import useConversation from "../../zustand/useConversation";
 
 const Conversation = ({ conversation }) => {
-  const setSelectedConversation = useConversation(
-    (state) => state.setSelectedConversation
-  );
-  const selectedConversation = useConversation(
-    (state) => state.selectedConversation
-  );
+  const { selectedConversation, setSelectedConversation } = useConversation();
 
   const isSelected = selectedConversation?._id === conversation._id;
 

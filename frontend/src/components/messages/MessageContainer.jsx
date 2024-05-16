@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Paper, Typography } from "@mui/material";
 import MessagesWrapper from "./MessagesWrapper";
 import MessageInput from "./MessageInput";
 import NoChatSelected from "./NoChatSelectedPage";
+import useConversation from "../../zustand/useConversation";
 
 function MessageContainer() {
-  const [isChatSelected, setIsChatSelected] = useState(true); // State to track if chat is selected
+  const { selectedConversation, setSelectedConversation } = useConversation();
 
-  // Condition to check if chat is selected
-  // You can replace this condition with your actual condition\
+  useEffect(() => {
+    return () => setSelectedConversation(null);
+  }, [setSelectedConversation]);
 
   return (
     <>
-      {isChatSelected ? (
+      {selectedConversation ? (
         <>
           <Paper>
-            <Typography sx={{ p: 2 }}>Message</Typography>
+            <Typography sx={{ p: 2 }}>
+              To: {selectedConversation.fullName}
+            </Typography>
           </Paper>
           <MessagesWrapper />
           <MessageInput />
