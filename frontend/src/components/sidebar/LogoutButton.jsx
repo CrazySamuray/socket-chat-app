@@ -12,7 +12,7 @@ const LogoutButton = () => {
       {!loading ? (
         <IconButton>
           <LogoutSharpIcon
-            style={{ width: 24, height: 24, color: "white" }}
+            style={{ width: 30, height: 30, color: "white", padding: 5 }}
             onClick={logout}
           />
         </IconButton>

@@ -1,6 +1,5 @@
-// src/App.jsx
 import React from "react";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, Box } from "@mui/material";
 import Background from "./components/styledComponents/Background";
 import theme from "./theme/theme";
 import Home from "./pages/Home.jsx";
@@ -15,21 +14,30 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Background>
-        <Routes>
-          <Route
-            path="/"
-            element={authUser ? <Home /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/login"
-            element={authUser ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={authUser ? <Navigate to="/" /> : <SignUp />}
-          />
-          {/* <Route path="/chat" element={<Chat />} /> */}
-        </Routes>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "500px",
+          }}
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={authUser ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/login"
+              element={authUser ? <Navigate to="/" /> : <Login />}
+            />
+            <Route
+              path="/signup"
+              element={authUser ? <Navigate to="/" /> : <SignUp />}
+            />
+            {/* <Route path="/chat" element={<Chat />} /> */}
+          </Routes>
+        </Box>
       </Background>
     </ThemeProvider>
   );

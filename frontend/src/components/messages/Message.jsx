@@ -44,7 +44,7 @@ const Message = ({ message }) => {
         </ChatBubbleRecive>
       )}
       {fromMe && (
-        <Avatar style={{ marginLeft: "5px" }}>
+        <Avatar style={{ marginRight: "5px" }}>
           <img
             src={profilePic}
             alt="user avatar"

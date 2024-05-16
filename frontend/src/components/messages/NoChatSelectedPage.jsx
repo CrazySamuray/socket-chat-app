@@ -2,13 +2,7 @@ import React from "react";
 import { Typography, Box } from "@mui/material";
 import ForumSharpIcon from "@mui/icons-material/ForumSharp";
 
-const NoChatSelected = () => {
-  // Assuming useAuthContext is imported and authUser is accessible
-  // const { authUser } = useAuthContext();
-
-  // If you don't have access to authUser, you can replace it with a static value
-  const authUser = { fullName: "User" }; // Replace with your actual user data or remove if not needed
-
+const NoChatSelected = ({ authUser }) => {
   return (
     <Box
       sx={{
