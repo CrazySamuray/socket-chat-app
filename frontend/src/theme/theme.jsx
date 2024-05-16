@@ -6,15 +6,6 @@ const theme = createTheme({
     MuiStack: {
       styleOverrides: { root: { minWidth: "450px", flex: "flex-col" } },
     },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          backgroundColor: "#081419",
-          input: { color: "#ffffff" },
-          placeholder: { color: "#ffffff" },
-        },
-      },
-    },
     MuiPaper: {
       styleOverrides: {
         root: {
