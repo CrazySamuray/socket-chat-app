@@ -37,8 +37,8 @@ const ChatBubbleSend = styled(Box)(({ theme }) => ({
   },
   "& .time": {
     position: "absolute",
-    bottom: "-15px",
-    left: "-30px",
+    bottom: "-20px",
+    right: "10px",
     fontSize: "0.75rem",
     color: theme.palette.grey[500],
   },
