@@ -1,5 +1,12 @@
 import React from "react";
-import { TextField, Button, Typography, Box } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Typography,
+  Box,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import FormBox from "../components/styledComponents/FormBox";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
@@ -7,7 +14,7 @@ import * as Yup from "yup";
 import { useLogin } from "../hooks/useLogin";
 
 function Login() {
-  const { loading, login } = useLogin();
+  const { loading, login, snackbar, handleClose } = useLogin();
 
   const initialValues = {
     username: "",
@@ -20,7 +27,6 @@ function Login() {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log("Form values:", values);
     login(values.username, values.password);
     setSubmitting(false);
   };
@@ -40,7 +46,6 @@ function Login() {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting,
           touched,
           errors,
         }) => (
@@ -75,9 +80,9 @@ function Login() {
               variant="contained"
               color="primary"
               fullWidth
-              disabled={isSubmitting}
+              disabled={loading}
             >
-              {isSubmitting ? "Logging in..." : "Login"}
+              {loading ? "Logging in..." : "Login"}
             </Button>
             <Box mt={2}>
               <Typography>
@@ -92,6 +97,21 @@ function Login() {
           </Form>
         )}
       </Formik>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </FormBox>
   );
 }
