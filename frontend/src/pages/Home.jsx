@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 
 const Home = () => {
   return (
-    <Box sx={{ display: "flex", maxHeight: "500px" }}>
+    <Box sx={{ display: "flex", Height: "500px" }}>
       <Sidebar />
       <MessageContainer />
     </Box>
