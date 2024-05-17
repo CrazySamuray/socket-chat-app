@@ -11,7 +11,6 @@ const Message = ({ message }) => {
   const { selectedConversation } = useConversation();
   const fromMe = message.senderId === authUser._id;
   const formattedTime = extractTime(message.createdAt);
-  console.log("Message: ", message, "AuthUser: ", authUser._id);
   const chatPosition = fromMe ? "flex-end" : "flex-start";
   const profilePic = fromMe
     ? authUser.profilePic
