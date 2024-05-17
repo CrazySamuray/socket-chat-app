@@ -2,14 +2,16 @@ import React, { useEffect, useRef } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
+import useListenMessages from "../../hooks/useListerMessage";
 
 const MessagesWrapper = () => {
   const { messages, loading } = useGetMessages();
-  const messagesEndRef = useRef(null);
+  useListenMessages();
+  const lastMessageRef = useRef();
 
   useEffect(() => {
-    if (!loading && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (!loading && lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, loading]);
 
@@ -33,13 +35,16 @@ const MessagesWrapper = () => {
         },
       }}
     >
-      {!loading &&
-        messages.length > 0 &&
-        messages.map((message, idx) => (
-          <Message key={idx} message={message} lastIdx={idx} />
-        ))}
-
-      {loading && (
+      {!loading && messages.length > 0 ? (
+        messages.map((message, index) => (
+          <div
+            key={message._id}
+            ref={index === messages.length - 1 ? lastMessageRef : null}
+          >
+            <Message message={message} />
+          </div>
+        ))
+      ) : loading ? (
         <Box
           sx={{
             display: "flex",
@@ -50,13 +55,11 @@ const MessagesWrapper = () => {
         >
           <CircularProgress />
         </Box>
-      )}
-      {!loading && messages.length === 0 && (
+      ) : (
         <Typography sx={{ color: "#808080", textAlign: "center", m: 1 }}>
           Send a message to start the conversation
         </Typography>
       )}
-      <div ref={messagesEndRef} />
     </Box>
   );
 };
